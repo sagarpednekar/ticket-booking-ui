@@ -1,4 +1,4 @@
-import { IReservation } from "../shared/data";
+import { IReservation } from "../shared/interface";
 
 type IProps = {
   tickets: IReservation[];

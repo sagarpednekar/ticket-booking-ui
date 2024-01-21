@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { IReservation, IUser } from "../shared/data";
+import { IReservation, IUser } from "../shared/interface";
 
 enum ErrorMesaage {
   name = "Name is required",

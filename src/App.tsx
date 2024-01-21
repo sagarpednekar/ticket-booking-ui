@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
-import Dashboard from "@/components/Dashboard";
-import Navbar from "@/components/Navbar";
-import SeatLayout from "@/components/SeatLayout";
-import Checkout from "@/components/Checkout";
-import "./App.css";
+import Dashboard from "./components/Dashboard";
+import Navbar from "./components/Navbar";
+import SeatLayout from "./components/SeatLayout";
+import Checkout from "./components/Checkout";
 import OrderSummary from "./components/OrderSummary";
+import "./App.css";
 
 
 function App() {
