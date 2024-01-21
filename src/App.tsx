@@ -1,35 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Route, Routes } from "react-router-dom";
+import Dashboard from "@/components/Dashboard";
+import Navbar from "@/components/Navbar";
+import SeatLayout from "@/components/SeatLayout";
+import Checkout from "@/components/Checkout";
+import "./App.css";
+import OrderSummary from "./components/OrderSummary";
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const reservations = [...Array(40)].map((_, index) => {
+    return {
+      id: `${index + 1}`,
+      seatNumber: index <= 20 ? `A-${index + 1}` : `B-${index + 1}`,
+      isAvailable: true,
+      user: {
+        name: "",
+        age: 0,
+      },
+      bookingDate: new Date(),
+      status: "pending",
+    };
+  });
+  console.log(reservations);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <main>
+      <Navbar />
+      <div className="container">
+        <Routes>
+          <Route path="/booking" Component={SeatLayout} />
+          <Route path="/checkout" Component={Checkout} />
+          <Route path="/dashboard" Component={Dashboard} />
+          <Route path="/order-summary" Component={OrderSummary} />
+        </Routes>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </main>
+  );
 }
 
-export default App
+export default App;
