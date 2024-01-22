@@ -75,7 +75,7 @@ export default function Dashboard() {
               <td className="border px-4 py-2">{booking.seatNumber}</td>
               <td className="border px-4 py-2">{booking.user.name}</td>
               <td className="border px-4 py-2">{booking.bookingDate}</td>
-              <td className="border px-4 py-2">{booking.status}</td>
+              <td className="border px-4 py-2 capitalize">{booking.status}</td>
               <td className="border px-4 py-2">
                 <button
                   className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"

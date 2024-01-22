@@ -1,44 +1,91 @@
-import { useState } from "react";
-import { reservations } from "../shared/data";
+import { useMemo, useState } from "react";
 import SeatGrid from "./SeatGrid";
-import { TypeReservations } from "../shared/types";
-import { IReservation } from "../shared/interface";
+import { useNavigate } from "react-router-dom";
+import { generateCartId } from "../shared/utility";
+import { useTicketStore } from "../store/TicketStore";
+import {
+
+  CheckoutStore,
+} from "../store/CheckoutStore";
+import { BookingStatusEnum, IBooking, ICart } from "../shared/interface";
 
 function SeatLayout() {
-  const [tickets, setTickets] = useState<TypeReservations>(reservations);
-  console.log(tickets);
+  const storeTickets = useTicketStore((state) => state.tickets);
+  const addToCart = CheckoutStore((state) => state.addToCart);
+  const updatePassenger = CheckoutStore((state) => state.updatePassenger);
+  const addBookings = CheckoutStore((state) => state.addBookings);
+  const [selectedTickets, setSelectedSeats] = useState<string[]>([]);
 
-  const selectSeat = (seatNumber: string) => {
-    const newTickets = tickets.map((ticket: IReservation) => {
-      if (ticket.seatNumber === seatNumber) {
-        ticket.isAvailable = !ticket.isAvailable;
-      }
-      return ticket;
-    });
-    setTickets(newTickets);
-  }
+  const memoizedTickets = useMemo(() => {
+    return storeTickets;
+  }, [storeTickets]);
+  console.log("Componened rendered", memoizedTickets);
 
-  // const proceedToPay = () => {
-  //   // redirect to payment page
-  // }
+  const updateTicketToTicket = useTicketStore(
+    (state) => state.updateTicketStatus
+  );
+  // const [tickets, setTickets] = useState<ITicket[]>(storeTickets);
+  const navigate = useNavigate();
+  const handleSelecteSeats = (seatNumber: string) => {
+    setSelectedSeats([...selectedTickets, seatNumber]);
+  };
 
+  const proceedToPay = () => {
+    if (selectedTickets.length === 0) {
+      alert("Please select atleast one seat");
+      return;
+    }
+
+    const cartDetails: ICart = {
+      email: "",
+      totalAmount: 0,
+      bookings: selectedTickets.map((seatNumber: string) => {
+        return {
+          seatNumber,
+          name: "",
+          age: 0,
+          status: BookingStatusEnum.CONFIRMED,
+          price: 900,
+        };
+      }),
+      bookingId: "",
+      cartId: generateCartId(),
+      bookingDate: new Date().toISOString(),
+      journeyDate: new Date().toISOString(),
+    };
+    addToCart(cartDetails);
+    updatePassenger(cartDetails)
+    addBookings(cartDetails.bookings as IBooking[]);
+    navigate("/checkout", { state: { cartId: cartDetails.cartId } });
+  };
 
   return (
     <>
       <div className="border-slate-300 border-1 p-5 space-0 bg-white">
-
         <h1 className="p-2 mb-2 text-grey"> Upper Birth</h1>
-        <SeatGrid tickets={tickets.slice(20, 40)} selectSeat={selectSeat} />
+        <SeatGrid
+          tickets={memoizedTickets.slice(20, 40)}
+          selectSeat={updateTicketToTicket}
+          handleSelecteSeats={handleSelecteSeats}
+        />
 
         <h1 className="p-2 mb-2"> Lower Birth</h1>
-        <SeatGrid tickets={tickets.slice(0, 20)} selectSeat={selectSeat} />
-        <button className="bg-slate-800 text-white p-2 mt-5">Proceed to Pay </button>
+        <SeatGrid
+          tickets={memoizedTickets.slice(0, 20)}
+          selectSeat={updateTicketToTicket}
+          handleSelecteSeats={handleSelecteSeats}
+        />
+        <button
+          className="bg-slate-800 text-white p-2 mt-5"
+          onClick={proceedToPay}
+        >
+          Proceed to Pay{" "}
+        </button>
       </div>
       <div className="border-slate-300 border-1 space-0 p-2">
         {/* Render card here */}
       </div>
     </>
-
   );
 }
 
