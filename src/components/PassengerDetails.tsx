@@ -9,7 +9,6 @@ enum ErrorMesaage {
 
 interface IProps {
   passengers: ICart;
-  isSubmit: boolean;
   bookings: IBooking[];
   updatePassengerDetails: (passenger: ICart) => void;
   updateBookingDetails: (booking: Partial<IBooking>) => void;

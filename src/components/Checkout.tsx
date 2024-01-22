@@ -1,4 +1,3 @@
-import { useState } from "react";
 
 import {  useNavigate } from "react-router-dom";
 import PassengerDetails from "./PassengerDetails";
@@ -13,7 +12,6 @@ export default function Checkout() {
   const updateCartToStore = CheckoutStore(
     (state) => state.updatePassenger
   );
-  const [isSubmit, setIsSubmit] = useState(false);
   const navigate = useNavigate();
 
   const onSubmitHandler = () => {
@@ -39,7 +37,6 @@ export default function Checkout() {
         updatePassengerDetails={updatePassengerDetails}
         updateBookingDetails={updateBookingDetails}
         bookings={bookings}
-        isSubmit={isSubmit}
       />
       <button
         className="bg-slate-800 text-white p-4 mt-5 w-full mb-5"
