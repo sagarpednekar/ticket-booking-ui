@@ -10,6 +10,7 @@ import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import { data } from "./shared/tickets";
 import { useTicketStore } from "./store/TicketStore";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 // Lazy-loaded components
 const Dashboard = React.lazy(() => import("./components/Dashboard"));
@@ -37,6 +38,7 @@ function App() {
   // Component rendering
   return (
     <main>
+      <ErrorBoundary>
       {/* Navigation bar */}
       <Navbar />
       <div className="container">
@@ -52,6 +54,7 @@ function App() {
           </Routes>
         </Suspense>
       </div>
+      </ErrorBoundary>  
     </main>
   );
 }

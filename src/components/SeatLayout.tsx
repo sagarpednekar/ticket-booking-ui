@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import SeatGrid from "./SeatGrid";
 import { generateCartId } from "../shared/utility";
 import { useTicketStore } from "../store/TicketStore";
-import { CheckoutStore } from "../store/CheckoutStore";
+import { CartStore } from "../store/cartStore";
 import { BookingStatusEnum, IBooking, ICart } from "../shared/interface";
 
 /**
@@ -15,8 +15,8 @@ import { BookingStatusEnum, IBooking, ICart } from "../shared/interface";
 function SeatLayout() {
   // State and store hooks
   const storeTickets = useTicketStore((state) => state.tickets);
-  const updatePassenger = CheckoutStore((state) => state.updatePassenger);
-  const addBookings = CheckoutStore((state) => state.addBookings);
+  const updateCart = CartStore((state) => state.updateCart);
+  const addBookings = CartStore((state) => state.addBookings);
   const [selectedTickets, setSelectedSeats] = useState<string[]>([]);
 
   // Memoize tickets for performance optimization
@@ -66,7 +66,7 @@ function SeatLayout() {
     });
 
     // Update passenger details and add bookings to store
-    updatePassenger(cartDetails);
+    updateCart(cartDetails);
     addBookings(bookings as IBooking[]);
 
     // Navigate to the checkout page with cart details

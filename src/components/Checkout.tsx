@@ -7,7 +7,7 @@
  */
 import { useNavigate } from "react-router-dom";
 import PassengerDetails from "./PassengerDetails";
-import { CheckoutStore } from "../store/CheckoutStore";
+import { CartStore } from "../store/cartStore";
 import { IBooking, ICart } from "../shared/interface";
 
 /**
@@ -19,11 +19,12 @@ import { IBooking, ICart } from "../shared/interface";
  * @returns {JSX.Element} The Checkout component.
  */
 export default function Checkout() {
-  // Retrieve cart details, bookings, and store update functions from CheckoutStore
-  const cartDetails = CheckoutStore((state) => state.cart);
-  const bookings = CheckoutStore((state) => state.bookings);
-  const updateBookings = CheckoutStore((state) => state.updateBookings);
-  const updateCartToStore = CheckoutStore((state) => state.updatePassenger);
+  // Retrieve cart details, bookings, and store update functions from CartStore
+  const cartDetails = CartStore((state) => state.cart);
+  const bookings = CartStore((state) => state.bookings);
+
+  const updateBookings = CartStore((state) => state.updateBooking);
+  const updateCartToStore = CartStore((state) => state.updateCart);
 
   // React Router navigate function
   const navigate = useNavigate();

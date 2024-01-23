@@ -36,15 +36,14 @@ export interface ICart {
   journeyDate: string;
 }
 
-export interface ICheckoutStore {
+export interface ICartStore {
   carts: ICart[];
   cart: ICart;
   bookings: IBooking[];
-  updatePassenger: (cart: Partial<ICart>) => void;
+  updateCart: (cart: Partial<ICart>) => void;
   addBookings: (booking: IBooking | IBooking[]) => void;
-  updateBookings: (booking: IBooking) => void;
+  updateBooking: (booking: IBooking) => void;
 }
-
 export interface ITicket {
   id: string;
   seatNumber: string;
