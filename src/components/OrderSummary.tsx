@@ -6,7 +6,7 @@
  * @component
  */
 import { useNavigate } from "react-router-dom";
-import { CheckoutStore } from "../store/CheckoutStore";
+import { CartStore } from "../store/cartStore";
 
 /**
  * OrderSummary Component
@@ -16,9 +16,9 @@ import { CheckoutStore } from "../store/CheckoutStore";
  * @component
  */
 export default function OrderSummary() {
-  // Retrieve order details and bookings from CheckoutStore
-  const orderDetails = CheckoutStore((state) => state.cart);
-  const bookings = CheckoutStore((state) => state.bookings);
+  // Retrieve order details and bookings from CartStore
+  const orderDetails = CartStore((state) => state.cart);
+  const bookings = CartStore((state) => state.bookings);
 
   // React Router navigate function
   const navigate = useNavigate();

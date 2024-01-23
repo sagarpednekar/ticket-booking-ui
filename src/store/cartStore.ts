@@ -1,11 +1,9 @@
 import { create } from "zustand";
-import cloneDeep from 'lodash.clonedeep';
-import { IBooking, ICart, ICheckoutStore } from "../shared/interface";
-
+import { IBooking, ICart, ICartStore } from "../shared/interface";
 /**
- * Represents the CheckoutStore object.
+ * Represents the CartStore object.
  */
-export const CheckoutStore = create<ICheckoutStore>((set) => ({
+export const CartStore = create<ICartStore>((set) => ({
     carts: [],
     cart: {
         cartId: "",
@@ -17,7 +15,6 @@ export const CheckoutStore = create<ICheckoutStore>((set) => ({
         journeyDate: "",
     },
     bookings: [],
-
     /**
      * Adds one or more bookings to the store.
      * @param booking - The booking(s) to be added.
@@ -32,9 +29,9 @@ export const CheckoutStore = create<ICheckoutStore>((set) => ({
      * Updates the passenger information in the cart.
      * @param cart - The partial cart object containing the updated passenger information.
      */
-    updatePassenger: (cart: Partial<ICart>) => {
+    updateCart: (cart: Partial<ICart>) => {
         set((state) => ({
-            cart: { ...state.cart, ...cloneDeep(cart) },
+            cart: { ...state.cart, ...cart },
         }));
     },
 
@@ -42,12 +39,12 @@ export const CheckoutStore = create<ICheckoutStore>((set) => ({
      * Updates the booking information in the store.
      * @param booking - The updated booking object.
      */
-    updateBookings: (booking: IBooking) => {
+    updateBooking: (booking: IBooking) => {
         set((state) => ({
             bookings: state.bookings.map((item) =>
                 item.seatNumber === booking.seatNumber ? {
                     ...item,
-                    ...cloneDeep(booking),
+                    ...booking,
                 } : item
             ),
         }));
