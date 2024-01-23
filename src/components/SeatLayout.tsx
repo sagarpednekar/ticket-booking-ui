@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import SeatGrid from "./SeatGrid";
 import { generateCartId } from "../shared/utility";
 import { useTicketStore } from "../store/TicketStore";
-import { CartStore } from "../store/cartStore";
+import { useCartStore } from "../store/cartStore";
 import { BookingStatusEnum, IBooking, ICart } from "../shared/interface";
 
 /**
@@ -15,8 +15,8 @@ import { BookingStatusEnum, IBooking, ICart } from "../shared/interface";
 function SeatLayout() {
   // State and store hooks
   const storeTickets = useTicketStore((state) => state.tickets);
-  const updateCart = CartStore((state) => state.updateCart);
-  const addBookings = CartStore((state) => state.addBookings);
+  const updateCart = useCartStore((state) => state.updateCart);
+  const addBookings = useCartStore((state) => state.addBookings);
   const [selectedTickets, setSelectedSeats] = useState<string[]>([]);
 
   // Memoize tickets for performance optimization

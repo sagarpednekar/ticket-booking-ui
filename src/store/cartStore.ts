@@ -1,9 +1,9 @@
 import { create } from "zustand";
-import { IBooking, ICart, ICartStore } from "../shared/interface";
+import { IBooking, ICart, IuseCartStore } from "../shared/interface";
 /**
- * Represents the CartStore object.
+ * Represents the useCartStore object.
  */
-export const CartStore = create<ICartStore>((set) => ({
+export const useCartStore = create<IuseCartStore>((set) => ({
     carts: [],
     cart: {
         cartId: "",
