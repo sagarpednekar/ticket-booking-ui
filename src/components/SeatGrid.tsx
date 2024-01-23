@@ -1,3 +1,11 @@
+/**
+ * Renders a grid of seats for ticket booking.
+ *
+ * @param {Object[]} tickets - The array of ticket objects.
+ * @param {Function} selectSeat - The function to select/unselect a seat.
+ * @param {Function} handleSelecteSeats - The function to handle the selection of seats.
+ * @returns {JSX.Element} The seat grid component.
+ */
 import { ITicket } from "../shared/interface";
 
 type IProps = {
