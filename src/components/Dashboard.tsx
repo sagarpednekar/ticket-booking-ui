@@ -1,36 +1,52 @@
 /**
  * Dashboard component displays a table of bookings and provides search functionality.
  * It also allows users to view booking details and cancel bookings.
+ *
+ * @component
+ * @returns {JSX.Element} The Dashboard component.
  */
 import { useState } from "react";
 import { reservations } from "../shared/data";
 import { TypeReservations } from "../shared/types";
 import { BookingStatusEnum } from "../shared/interface";
 
+// Define the search field type
 type SearchField = "id" | "seatNumber" | "user";
 
+/**
+ * Dashboard Component
+ *
+ * A React component that displays a table of bookings, provides search functionality,
+ * and allows users to view booking details and cancel bookings.
+ *
+ * @component
+ * @returns {JSX.Element} The Dashboard component.
+ */
 export default function Dashboard() {
+  // State variables
   const [bookings, setBookings] = useState<TypeReservations>(reservations);
   const [search, setSearch] = useState("");
   const [searchField, setSearchField] = useState<SearchField>("id");
-  const [selectedBooking, setSelectedBooking] = useState<
-    TypeReservations[number] | null
-  >(null);
+  const [selectedBooking, setSelectedBooking] = useState<TypeReservations[number] | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Filter bookings based on search criteria
   const filteredBookings = bookings.filter((booking) =>
     String(booking[searchField]).toLowerCase().includes(search.toLowerCase())
   );
 
+  // Open modal to view booking details
   const openModal = (booking: TypeReservations[number]) => {
     setSelectedBooking(booking);
     setIsModalOpen(true);
   };
 
+  // Close modal
   const closeModal = () => {
     setIsModalOpen(false);
   };
 
+  // Cancel a booking
   const cancelBooking = (booking: TypeReservations[number]) => {
     const updatedBookings = bookings.map((b) => {
       if (b.id === booking.id) {
@@ -42,8 +58,10 @@ export default function Dashboard() {
     closeModal();
   };
 
+  // Component rendering
   return (
     <div>
+      {/* Search input and filter dropdown */}
       <div className="flex mb-4 mt-10">
         <input
           type="text"
@@ -62,6 +80,8 @@ export default function Dashboard() {
           <option value="user.name">Name</option>
         </select>
       </div>
+
+      {/* Bookings table */}
       <table className="table-auto bg-white w-full">
         <thead>
           <tr>
@@ -92,6 +112,8 @@ export default function Dashboard() {
           ))}
         </tbody>
       </table>
+
+      {/* Booking details modal */}
       {isModalOpen && (
         <div className="fixed z-50 inset-0 overflow-y-auto">
           <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -158,7 +180,9 @@ export default function Dashboard() {
           </div>
         </div>
       )}
-      {isModalOpen && <div className="fixed inset-0 bg-black opacity-50"></div>}
+      {isModalOpen && <div className="fixed inset-0 bg-black opacity-50">
+        
+        </div>}
     </div>
   );
 }

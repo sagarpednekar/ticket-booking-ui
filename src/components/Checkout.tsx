@@ -1,33 +1,56 @@
 /**
  * Checkout component for the bus ticket booking UI.
  * Renders the passenger details form and handles the submission of the form.
- * @returns The Checkout component.
+ *
+ * @component
+ * @returns {JSX.Element} The Checkout component.
  */
-
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PassengerDetails from "./PassengerDetails";
 import { CheckoutStore } from "../store/CheckoutStore";
 import { IBooking, ICart } from "../shared/interface";
 
+/**
+ * Checkout Component
+ *
+ * A React component that renders the passenger details form and handles form submission.
+ *
+ * @component
+ * @returns {JSX.Element} The Checkout component.
+ */
 export default function Checkout() {
-
+  // Retrieve cart details, bookings, and store update functions from CheckoutStore
   const cartDetails = CheckoutStore((state) => state.cart);
   const bookings = CheckoutStore((state) => state.bookings);
   const updateBookings = CheckoutStore((state) => state.updateBookings);
-  const updateCartToStore = CheckoutStore(
-    (state) => state.updatePassenger
-  );
+  const updateCartToStore = CheckoutStore((state) => state.updatePassenger);
+
+  // React Router navigate function
   const navigate = useNavigate();
 
+  /**
+   * Handle form submission.
+   * Redirects the user to the order summary page.
+   */
   const onSubmitHandler = () => {
-    
-    // redirect to payment page
+    // Redirect to the order summary page
     navigate("/order-summary");
   };
+
+  /**
+   * Update passenger details in the store.
+   *
+   * @param {Partial<ICart>} passenger - The partial passenger details to update.
+   */
   const updatePassengerDetails = (passenger: Partial<ICart>) => {
     updateCartToStore(passenger as ICart);
   };
 
+  /**
+   * Update booking details in the store.
+   *
+   * @param {Partial<IBooking>} booking - The partial booking details to update.
+   */
   const updateBookingDetails = (booking: Partial<IBooking>) => {
     if (!booking) {
       return;
@@ -35,19 +58,23 @@ export default function Checkout() {
     updateBookings(booking as IBooking);
   };
 
+  // Component rendering
   return (
     <div className="bg-white container mb-2">
+      {/* Render the PassengerDetails component */}
       <PassengerDetails
         passengers={cartDetails}
         updatePassengerDetails={updatePassengerDetails}
         updateBookingDetails={updateBookingDetails}
         bookings={bookings}
       />
+
+      {/* Proceed to Pay Button */}
       <button
         className="bg-slate-800 text-white p-4 mt-5 w-full mb-5"
         onClick={() => onSubmitHandler()}
       >
-        Proceed to Pay{" "}
+        Proceed to Pay
       </button>
     </div>
   );
