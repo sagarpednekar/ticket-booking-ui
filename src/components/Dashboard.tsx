@@ -5,6 +5,7 @@
 import { useState } from "react";
 import { reservations } from "../shared/data";
 import { TypeReservations } from "../shared/types";
+import { BookingStatusEnum } from "../shared/interface";
 
 type SearchField = "id" | "seatNumber" | "user";
 
@@ -33,7 +34,7 @@ export default function Dashboard() {
   const cancelBooking = (booking: TypeReservations[number]) => {
     const updatedBookings = bookings.map((b) => {
       if (b.id === booking.id) {
-        return { ...b, status: "canceled" as const };
+        return { ...b, status: BookingStatusEnum.CANCELED };
       }
       return b;
     });
@@ -66,7 +67,6 @@ export default function Dashboard() {
           <tr>
             <th className="px-4 py-2">ID</th>
             <th className="px-4 py-2">Seat Number</th>
-            <th className="px-4 py-2">User</th>
             <th className="px-4 py-2">Booking Date</th>
             <th className="px-4 py-2">Status</th>
             <th className="px-4 py-2">Actions</th>

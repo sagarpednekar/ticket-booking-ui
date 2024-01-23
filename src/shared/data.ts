@@ -1,5 +1,6 @@
-import { TypeReservations } from "./types";
+import { IReservation } from "./interface";
 
+export type TypeReservations = IReservation[];
 export const reservations: TypeReservations = [
   {
     id: "1",
@@ -10,7 +11,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "2",
@@ -21,7 +22,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "3",
@@ -32,7 +33,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "4",
@@ -43,7 +44,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "5",
@@ -54,7 +55,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "6",
@@ -65,7 +66,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "7",
@@ -76,7 +77,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "8",
@@ -87,7 +88,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "9",
@@ -98,7 +99,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "10",
@@ -109,7 +110,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "11",
@@ -120,7 +121,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "12",
@@ -131,7 +132,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "13",
@@ -142,7 +143,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "14",
@@ -153,7 +154,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "15",
@@ -164,7 +165,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "16",
@@ -175,7 +176,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "17",
@@ -186,7 +187,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "18",
@@ -197,7 +198,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "19",
@@ -208,7 +209,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "20",
@@ -219,7 +220,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "21",
@@ -230,7 +231,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "22",
@@ -241,7 +242,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "23",
@@ -252,7 +253,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "24",
@@ -263,7 +264,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "25",
@@ -274,7 +275,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "26",
@@ -285,7 +286,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "27",
@@ -296,7 +297,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "28",
@@ -307,7 +308,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "29",
@@ -318,7 +319,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "30",
@@ -329,7 +330,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "31",
@@ -340,7 +341,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "32",
@@ -351,7 +352,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "33",
@@ -362,7 +363,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "34",
@@ -373,7 +374,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "35",
@@ -384,7 +385,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "36",
@@ -395,7 +396,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "37",
@@ -406,7 +407,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "38",
@@ -417,7 +418,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "39",
@@ -428,7 +429,7 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
   {
     id: "40",
@@ -439,6 +440,6 @@ export const reservations: TypeReservations = [
       age: 0,
     },
     bookingDate: "2024-01-21T15:44:16.799Z",
-    status: "pending",
+    status: "confirmed",
   },
 ];
