@@ -1,16 +1,4 @@
 /**
- * Checkout component for the bus ticket booking UI.
- * Renders the passenger details form and handles the submission of the form.
- *
- * @component
- * @returns {JSX.Element} The Checkout component.
- */
-import { useNavigate } from "react-router-dom";
-import PassengerDetails from "./PassengerDetails";
-import { CartStore } from "../store/cartStore";
-import { IBooking, ICart } from "../shared/interface";
-
-/**
  * Checkout Component
  *
  * A React component that renders the passenger details form and handles form submission.
@@ -18,13 +6,29 @@ import { IBooking, ICart } from "../shared/interface";
  * @component
  * @returns {JSX.Element} The Checkout component.
  */
-export default function Checkout() {
-  // Retrieve cart details, bookings, and store update functions from CartStore
-  const cartDetails = CartStore((state) => state.cart);
-  const bookings = CartStore((state) => state.bookings);
+import { useNavigate } from "react-router-dom";
+import PassengerDetails from "./PassengerDetails";
+import { useCartStore } from "../store/cartStore";
+import { IBooking, ICart } from "../shared/interface";
+import { debounce } from "../helpers";
 
-  const updateBookings = CartStore((state) => state.updateBooking);
-  const updateCartToStore = CartStore((state) => state.updateCart);
+/**
+ * Checkout Component
+ *
+ * The `Checkout` component handles the rendering of the passenger details form
+ * and submission of the form. It interacts with the `useCartStore` to retrieve
+ * and update cart details and bookings.
+ *
+ * @component
+ * @returns {JSX.Element} The Checkout component.
+ */
+const Checkout: React.FC = () => {
+  // Retrieve cart details, bookings, and store update functions from useCartStore
+  const cartDetails = useCartStore((state) => state.cart);
+  const bookings = useCartStore((state) => state.bookings);
+
+  const updateBookings = useCartStore((state) => state.updateBooking);
+  const updateCartToStore = useCartStore((state) => state.updateCart);
 
   // React Router navigate function
   const navigate = useNavigate();
@@ -44,6 +48,9 @@ export default function Checkout() {
    * @param {Partial<ICart>} passenger - The partial passenger details to update.
    */
   const updatePassengerDetails = (passenger: Partial<ICart>) => {
+    if (!passenger) {
+      return;
+    }
     updateCartToStore(passenger as ICart);
   };
 
@@ -59,14 +66,18 @@ export default function Checkout() {
     updateBookings(booking as IBooking);
   };
 
+  // Debounce update functions to avoid frequent updates
+  const debouncedUpdatePassengerDetails = debounce(updatePassengerDetails, 500);
+  const debouncedUpdateBookingDetails = debounce(updateBookingDetails, 500);
+
   // Component rendering
   return (
     <div className="bg-white container mb-2">
       {/* Render the PassengerDetails component */}
       <PassengerDetails
         passengers={cartDetails}
-        updatePassengerDetails={updatePassengerDetails}
-        updateBookingDetails={updateBookingDetails}
+        updatePassengerDetails={debouncedUpdatePassengerDetails}
+        updateBookingDetails={debouncedUpdateBookingDetails}
         bookings={bookings}
       />
 
@@ -79,4 +90,6 @@ export default function Checkout() {
       </button>
     </div>
   );
-}
+};
+
+export default Checkout;

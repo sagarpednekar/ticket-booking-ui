@@ -36,7 +36,7 @@ export interface ICart {
   journeyDate: string;
 }
 
-export interface ICartStore {
+export interface IuseCartStore {
   carts: ICart[];
   cart: ICart;
   bookings: IBooking[];
