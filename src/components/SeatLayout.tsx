@@ -3,15 +3,11 @@ import SeatGrid from "./SeatGrid";
 import { useNavigate } from "react-router-dom";
 import { generateCartId } from "../shared/utility";
 import { useTicketStore } from "../store/TicketStore";
-import {
-
-  CheckoutStore,
-} from "../store/CheckoutStore";
+import { CheckoutStore } from "../store/CheckoutStore";
 import { BookingStatusEnum, IBooking, ICart } from "../shared/interface";
 
 function SeatLayout() {
   const storeTickets = useTicketStore((state) => state.tickets);
-  const addToCart = CheckoutStore((state) => state.addToCart);
   const updatePassenger = CheckoutStore((state) => state.updatePassenger);
   const addBookings = CheckoutStore((state) => state.addBookings);
   const [selectedTickets, setSelectedSeats] = useState<string[]>([]);
@@ -19,12 +15,10 @@ function SeatLayout() {
   const memoizedTickets = useMemo(() => {
     return storeTickets;
   }, [storeTickets]);
-  console.log("Componened rendered", memoizedTickets);
 
   const updateTicketToTicket = useTicketStore(
     (state) => state.updateTicketStatus
   );
-  // const [tickets, setTickets] = useState<ITicket[]>(storeTickets);
   const navigate = useNavigate();
   const handleSelecteSeats = (seatNumber: string) => {
     setSelectedSeats([...selectedTickets, seatNumber]);
@@ -39,23 +33,22 @@ function SeatLayout() {
     const cartDetails: ICart = {
       email: "",
       totalAmount: 0,
-      bookings: selectedTickets.map((seatNumber: string) => {
-        return {
-          seatNumber,
-          name: "",
-          age: 0,
-          status: BookingStatusEnum.CONFIRMED,
-          price: 900,
-        };
-      }),
       bookingId: "",
       cartId: generateCartId(),
       bookingDate: new Date().toISOString(),
       journeyDate: new Date().toISOString(),
     };
-    addToCart(cartDetails);
-    updatePassenger(cartDetails)
-    addBookings(cartDetails.bookings as IBooking[]);
+    const bookings = selectedTickets.map((seatNumber: string) => {
+      return {
+        seatNumber,
+        name: "",
+        age: 0,
+        status: BookingStatusEnum.CONFIRMED,
+        price: 900,
+      };
+    });
+    updatePassenger(cartDetails);
+    addBookings(bookings as IBooking[]);
     navigate("/checkout", { state: { cartId: cartDetails.cartId } });
   };
 

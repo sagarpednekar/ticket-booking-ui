@@ -1,3 +1,10 @@
+/**
+ * Represents the PassengerDetails component.
+ * @param passengers - The cart containing passenger details.
+ * @param bookings - The array of booking details.
+ * @param updatePassengerDetails - The function to update passenger details.
+ * @param updateBookingDetails - The function to update booking details.
+ */
 import React from "react";
 import { IBooking, ICart } from "../shared/interface";
 
@@ -20,7 +27,6 @@ export default function PassengerDetails({
   updateBookingDetails,
   bookings,
 }: IProps) {
-  console.log("passenger", passengers);
 
   const isEmpty = (value: string): boolean => {
     return value.trim() === "";
@@ -41,7 +47,6 @@ export default function PassengerDetails({
       ...passengers,
       [e.target.name as keyof ICart]: e.target.value,
     };
-    console.log("updatedPassenger emiakl", updatedPassenger);
     
     updatePassengerDetails(updatedPassenger as ICart); // Cast updatedPassenger as ICart
   };

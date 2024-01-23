@@ -1,3 +1,7 @@
+/**
+ * Dashboard component displays a table of bookings and provides search functionality.
+ * It also allows users to view booking details and cancel bookings.
+ */
 import { useState } from "react";
 import { reservations } from "../shared/data";
 import { TypeReservations } from "../shared/types";

@@ -2,6 +2,9 @@ import { create } from "zustand";
 import cloneDeep from 'lodash.clonedeep';
 import { IBooking, ICart, ICheckoutStore } from "../shared/interface";
 
+/**
+ * Represents the CheckoutStore object.
+ */
 export const CheckoutStore = create<ICheckoutStore>((set) => ({
     carts: [],
     cart: {
@@ -14,16 +17,31 @@ export const CheckoutStore = create<ICheckoutStore>((set) => ({
         journeyDate: "",
     },
     bookings: [],
+
+    /**
+     * Adds one or more bookings to the store.
+     * @param booking - The booking(s) to be added.
+     */
     addBookings: (booking: IBooking | IBooking[]) => {
         set((state) => ({
             bookings: [...state.bookings, ...(Array.isArray(booking) ? booking : [booking])],
         }));
     },
+
+    /**
+     * Updates the passenger information in the cart.
+     * @param cart - The partial cart object containing the updated passenger information.
+     */
     updatePassenger: (cart: Partial<ICart>) => {
         set((state) => ({
             cart: { ...state.cart, ...cloneDeep(cart) },
         }));
     },
+
+    /**
+     * Updates the booking information in the store.
+     * @param booking - The updated booking object.
+     */
     updateBookings: (booking: IBooking) => {
         set((state) => ({
             bookings: state.bookings.map((item) =>
@@ -33,33 +51,5 @@ export const CheckoutStore = create<ICheckoutStore>((set) => ({
                 } : item
             ),
         }));
-    },
-    updateCart: (cart) => {
-        console.log(
-            "🚀 ~ file: CheckoutStore.ts ~ line 93 ~ set ~ cart",
-            cart
-        );
-
-        set((state) => ({
-            carts: state.carts.map((item) => {
-
-                return item.cartId === cart.cartId ? {
-                    ...item,
-                    ...cloneDeep(cart),
-                } : item
-            }
-            ),
-
-        }));
-    },
-    addToCart(cart) {
-        set((state) => ({
-            carts: [...state.carts, cart],
-        }));
-    },
-    removeCartById: (cartId: string) => {
-        set((state) => ({
-            carts: state.carts.filter((item) => item.cartId !== cartId),
-        }));
-    },
+    }
 }));

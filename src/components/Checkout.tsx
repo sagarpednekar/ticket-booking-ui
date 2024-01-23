@@ -1,3 +1,8 @@
+/**
+ * Checkout component for the bus ticket booking UI.
+ * Renders the passenger details form and handles the submission of the form.
+ * @returns The Checkout component.
+ */
 
 import {  useNavigate } from "react-router-dom";
 import PassengerDetails from "./PassengerDetails";

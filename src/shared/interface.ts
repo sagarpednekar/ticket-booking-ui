@@ -30,7 +30,6 @@ export interface IBooking {
 export interface ICart {
   cartId: string;
   email: string;
-  bookings?: IBooking[];
   bookingId: string;
   totalAmount: number;
   bookingDate: string;
@@ -44,9 +43,6 @@ export interface ICheckoutStore {
   updatePassenger: (cart: Partial<ICart>) => void;
   addBookings: (booking: IBooking | IBooking[]) => void;
   updateBookings: (booking: IBooking) => void;
-  addToCart: (cart: ICart) => void;
-  updateCart: (cart: Partial<ICart>) => void;
-  removeCartById: (cartId: string) => void;
 }
 
 export interface ITicket {
