@@ -1,19 +1,22 @@
 /**
  * Represents the PassengerDetails component.
- * @param passengers - The cart containing passenger details.
- * @param bookings - The array of booking details.
- * @param updatePassengerDetails - The function to update passenger details.
- * @param updateBookingDetails - The function to update booking details.
+ *
+ * @component
+ * @param {Object} props - The properties passed to the component.
+ * @param {ICart} props.passengers - The cart containing passenger details.
+ * @param {IBooking[]} props.bookings - The array of booking details.
+ * @param {Function} props.updatePassengerDetails - The function to update passenger details.
+ * @param {Function} props.updateBookingDetails - The function to update booking details.
  */
 import React from "react";
 import { IBooking, ICart } from "../shared/interface";
 
+// Enum to define error messages
 enum ErrorMesaage {
   name = "Name is required",
   age = "Age is required",
   email = "Email is required",
 }
-
 interface IProps {
   passengers: ICart;
   bookings: IBooking[];
@@ -21,6 +24,17 @@ interface IProps {
   updateBookingDetails: (booking: Partial<IBooking>) => void;
 }
 
+/**
+ * PassengerDetails Component
+ *
+ * A React component that displays and allows users to edit passenger and booking details.
+ *
+ * @param {Object} props - The properties passed to the component.
+ * @param {ICart} props.passengers - The cart containing passenger details.
+ * @param {IBooking[]} props.bookings - The array of booking details.
+ * @param {Function} props.updatePassengerDetails - The function to update passenger details.
+ * @param {Function} props.updateBookingDetails - The function to update booking details.
+ */
 export default function PassengerDetails({
   passengers,
   updatePassengerDetails,
@@ -28,10 +42,22 @@ export default function PassengerDetails({
   bookings,
 }: IProps) {
 
+  /**
+   * Check if a string is empty.
+   *
+   * @param {string} value - The string to check.
+   * @returns {boolean} - True if the string is empty, false otherwise.
+   */
   const isEmpty = (value: string): boolean => {
     return value.trim() === "";
   };
 
+  /**
+   * Handle change in input fields for booking details.
+   *
+   * @param {React.ChangeEvent<HTMLInputElement>} e - The event object.
+   * @param {IBooking} booking - The booking object being updated.
+   */
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     booking: IBooking
@@ -40,23 +66,29 @@ export default function PassengerDetails({
       ...booking,
       [e.target.name as keyof IBooking]: e.target.value,
     };
-    updateBookingDetails(updatedBooking); // Cast updatedPassenger as ICart
+    updateBookingDetails(updatedBooking);
   };
+
+  /**
+   * Handle change in the email input field for passenger details.
+   *
+   * @param {React.ChangeEvent<HTMLInputElement>} e - The event object.
+   */
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const updatedPassenger = {
       ...passengers,
       [e.target.name as keyof ICart]: e.target.value,
     };
-    
-    updatePassengerDetails(updatedPassenger as ICart); // Cast updatedPassenger as ICart
+    updatePassengerDetails(updatedPassenger as ICart);
   };
 
+  // Component rendering
   return (
     <div className="p-2">
       {bookings.map((booking: IBooking, index: number) => (
         <div key={booking.seatNumber}>
           <p className="text-black text-2xl">
-            Pasenger {index + 1}| <b>Seat {booking.seatNumber}</b>{" "}
+            Passenger {index + 1}| <b>Seat {booking.seatNumber}</b>{" "}
           </p>
           <div className="p-2">
             <label className="text-black" aria-label="passenger-name">
