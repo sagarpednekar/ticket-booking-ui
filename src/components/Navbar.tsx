@@ -12,11 +12,8 @@ export default function Navbar() {
                 </NavLink>
               </div>
               <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
-                <NavLink to="/booking" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                <NavLink to="/listing" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                     Booking 
-                </NavLink>
-                <NavLink to="/checkout" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                    Checkout
                 </NavLink>
                 <NavLink to="/dashboard" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                     Dashboard
