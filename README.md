@@ -1,30 +1,28 @@
-# React + TypeScript + Vite
+# Ticket Booking Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a ticket booking application built with React. It's hosted on Vercel and can be accessed [here](https://ticket-booking-app-sagarpednekars-projects.vercel.app/).
 
-Currently, two official plugins are available:
+## Tools Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Zustand**: A small, fast and scalable state-management solution. It has a comfortable API based on hooks and is not boilerplatey or opinionated, but still just enough to be explicit and flux-like.
+- **React Router Dom**: Declarative routing for React. It helps in managing the routing part of your React app.
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Lazy Loading for Routes**: This project uses React's lazy loading feature to load different routes. This helps in code-splitting and loading only what's necessary for the user, improving performance
 
-- Configure the top-level `parserOptions` property like this:
+## Getting Started
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+To get a local copy up and running, follow these steps:
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+1. Clone the repository.
+2. Install the dependencies with `yarn install`.
+3. Start the development server with `yarn start`.
+
+## Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
+
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
